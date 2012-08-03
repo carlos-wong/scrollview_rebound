@@ -9,8 +9,8 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
 /**
- * ScrollView·´µ¯Ğ§¹ûµÄÊµÏÖ 
- * ÆÆÈı¾ü ×ªÔØÇë×¢Ã÷³ö´¦
+ * ScrollViewåå¼¹æ•ˆæœçš„å®ç° 
+ * ç ´ä¸‰å†› è½¬è½½è¯·æ³¨æ˜å‡ºå¤„
  */
 public class MyScrollView extends ScrollView
 {
@@ -71,20 +71,20 @@ public class MyScrollView extends ScrollView
                 final float preY = y;
                 float nowY = ev.getY();
                 int deltaY = (int) (preY - nowY);
-                // ¹ö¶¯
+                // æ»šåŠ¨
                 scrollBy(0, deltaY);
 
                 y = nowY;
-                // µ±¹ö¶¯µ½×îÉÏ»òÕß×îÏÂÊ±¾Í²»»áÔÙ¹ö¶¯£¬ÕâÊ±ÒÆ¶¯²¼¾Ö
+                // å½“æ»šåŠ¨åˆ°æœ€ä¸Šæˆ–è€…æœ€ä¸‹æ—¶å°±ä¸ä¼šå†æ»šåŠ¨ï¼Œè¿™æ—¶ç§»åŠ¨å¸ƒå±€
                 if (isNeedMove())
                 {
                     if (normal.isEmpty())
                     {
-                        // ±£´æÕı³£µÄ²¼¾ÖÎ»ÖÃ
+                        // ä¿å­˜æ­£å¸¸çš„å¸ƒå±€ä½ç½®
                         normal.set(inner.getLeft(), inner.getTop(), inner.getRight(), inner.getBottom());
 
                     }
-                    // ÒÆ¶¯²¼¾Ö
+                    // ç§»åŠ¨å¸ƒå±€
                     inner.layout(inner.getLeft(), inner.getTop() - deltaY, inner.getRight(), inner.getBottom() - deltaY);
                 }
                 break;
@@ -94,28 +94,28 @@ public class MyScrollView extends ScrollView
         }
     }
 
-    // ¿ªÆô¶¯»­ÒÆ¶¯
+    // å¼€å¯åŠ¨ç”»ç§»åŠ¨
 
     public void animation()
     {
-        // ¿ªÆôÒÆ¶¯¶¯»­
+        // å¼€å¯ç§»åŠ¨åŠ¨ç”»
         TranslateAnimation ta = new TranslateAnimation(0, 0, inner.getTop(), normal.top);
         ta.setDuration(200);
         inner.startAnimation(ta);
-        // ÉèÖÃ»Øµ½Õı³£µÄ²¼¾ÖÎ»ÖÃ
+        // è®¾ç½®å›åˆ°æ­£å¸¸çš„å¸ƒå±€ä½ç½®
         inner.layout(normal.left, normal.top, normal.right, normal.bottom);
 
         normal.setEmpty();
 
     }
 
-    // ÊÇ·ñĞèÒª¿ªÆô¶¯»­
+    // æ˜¯å¦éœ€è¦å¼€å¯åŠ¨ç”»
     public boolean isNeedAnimation()
     {
         return !normal.isEmpty();
     }
 
-    // ÊÇ·ñĞèÒªÒÆ¶¯²¼¾Ö
+    // æ˜¯å¦éœ€è¦ç§»åŠ¨å¸ƒå±€
     public boolean isNeedMove()
     {
 
